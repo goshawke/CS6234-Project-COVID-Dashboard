@@ -1,1 +1,1 @@
-# CS6234-Project
+# CS6234-Project (OBJECT-ORIENTED DESIGN)
