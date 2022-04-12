@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btn_GoToLogMedicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Log Medicine"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/tvNewSymptom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_GoToLogSymptom"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <Button
+        android:id="@+id/btn_GoToLogSymptom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Go To Log Symptom"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
+
+    <TextView
+        android:id="@+id/tvNewSymptom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Symptom will show here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_GoToLogSymptom"
+        app:layout_constraintVertical_bias="0.306" />
+
+    <TextView
+        android:id="@+id/tvNewMedicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Medicine will show here"
+        app:layout_constraintBottom_toTopOf="@+id/tvNewDoctorVisit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewSymptom"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <TextView
+        android:id="@+id/tvNewDoctorVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Doctor Visit will show here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewSymptom"
+        app:layout_constraintVertical_bias="0.541" />
+
+    <Button
+        android:id="@+id/btnViewSymptoms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Symptoms"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/btn_GoToLogSymptom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
+
+    <Button
+        android:id="@+id/btnViewMedicines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Medicines"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSymptoms" />
+
+    <Button
+        android:id="@+id/btnViewDoctorVisits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Doctor Visits"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/btn_GoToLogSymptom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewMedicines"
+        app:layout_constraintVertical_bias="0.063" />
+
+    <Button
+        android:id="@+id/btnLogDoctorVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Doctor Visit"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/tvNewSymptom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_GoToLogMedicine"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

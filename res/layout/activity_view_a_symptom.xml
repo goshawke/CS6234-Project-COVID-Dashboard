@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewASymptom">
+    android:id="@+id/view_a_symptom"
+    android:orientation="vertical"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/header"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/btnBack_view_symptoms_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:checkable="false"
+            android:text="Back"
+            android:textColor="@color/secondaryText"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+
+        <TextView
+            android:id="@+id/tvViewASymptomHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnBack_view_symptoms_list"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/primaryText"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvFirstExperiencedDateHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="Date First Experienced"
+        android:textColor="@color/primaryText"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/primaryText"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/tvSeverityHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="Severity"
+        android:textColor="@color/primaryText"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivSeverity"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:tint="@color/textAndIcons"
+        app:srcCompat="@drawable/symptom" />
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.practice.coviddashboard">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.COVIDDashboard">
+        <activity
+            android:name=".Log_Symptom_ChooseSymptom"
+            android:exported="false" />
+        <activity
+            android:name=".Log_Symptom_SymptomSeverity"
+            android:exported="false" />
+        <activity
+            android:name=".Log_Symptom_SymptomDate"
+            android:exported="false" />
+        <activity
+            android:name=".ViewSymptoms"
+            android:exported="false" />
+        <activity
+            android:name=".ViewASymptom"
+            android:exported="false" />
+        <activity
+            android:name=".Log_Medicine_ChooseMedicine"
+            android:exported="false" />
+        <activity
+            android:name=".Log_Medicine_ChooseDosageAndDuration"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMedicines"
+            android:exported="false" />
+        <activity
+            android:name=".ViewAMedicine"
+            android:exported="false" />
+        <activity
+            android:name=".Log_DoctorVisit_ChooseVisitType"
+            android:exported="false" />
+        <activity
+            android:name=".Log_DoctorVisit_ChooseDoctorType"
+            android:exported="false" />
+        <activity
+            android:name=".Log_DoctorVisit_ChooseDateAndDescription"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDoctorVisits"
+            android:exported="false" />
+        <activity
+            android:name=".ViewADoctorVisit"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
