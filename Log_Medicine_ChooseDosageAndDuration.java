@@ -63,7 +63,7 @@ public class Log_Medicine_ChooseDosageAndDuration extends AppCompatActivity {
 
                 if(etStartMedicine.getText().toString().matches(datePattern))
                 {
-                    if(Integer.parseInt(etStartMedicine.getText().toString().substring(6, 10)) <= 2022 && Integer.parseInt(etStartMedicine.getText().toString().substring(6, 10)) >= 2020){
+                    if(Integer.parseInt(etStartMedicine.getText().toString().substring(6, 10)) <= 2022 && Integer.parseInt(etStartMedicine.getText().toString().substring(6, 10)) >= 1918){
                         if(Integer.parseInt(etStartMedicine.getText().toString().substring(0, 2)) >= 0 && Integer.parseInt(etStartMedicine.getText().toString().substring(0, 2)) <= 12){
                             if(Integer.parseInt(etStartMedicine.getText().toString().substring(3, 5)) >= 0 && Integer.parseInt(etStartMedicine.getText().toString().substring(3, 5)) <= 31){
                                 setStartDate(etStartMedicine.getText().toString());
