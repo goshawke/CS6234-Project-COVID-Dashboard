@@ -61,7 +61,7 @@ public class Log_DoctorVisit_ChooseDateAndDescription extends AppCompatActivity 
             {
                 if(etDateOfVisit.getText().toString().matches(datePattern))
                 {
-                    if(Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) <= 2022 && Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) >= 2020){
+                    if(Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) <= 2022 && Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) >= 2000){
                         if(Integer.parseInt(etDateOfVisit.getText().toString().substring(0, 2)) >= 0 && Integer.parseInt(etDateOfVisit.getText().toString().substring(0, 2)) <= 12){
                             if(Integer.parseInt(etDateOfVisit.getText().toString().substring(3, 5)) >= 0 && Integer.parseInt(etDateOfVisit.getText().toString().substring(3, 5)) <= 31){
                                 setDate_of_visit(etDateOfVisit.getText().toString());
