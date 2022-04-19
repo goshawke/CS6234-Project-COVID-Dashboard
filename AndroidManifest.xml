@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.practice.coviddashboard">
+    package="edu.gwu.coviddashboard">
 
     <application
         android:allowBackup="true"
@@ -8,58 +8,106 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.COVIDDashboard">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".Log_Symptom_ChooseSymptom"
-            android:exported="false" />
-        <activity
-            android:name=".Log_Symptom_SymptomSeverity"
-            android:exported="false" />
-        <activity
-            android:name=".Log_Symptom_SymptomDate"
-            android:exported="false" />
-        <activity
-            android:name=".ViewSymptoms"
-            android:exported="false" />
-        <activity
-            android:name=".ViewASymptom"
-            android:exported="false" />
-        <activity
-            android:name=".Log_Medicine_ChooseMedicine"
-            android:exported="false" />
-        <activity
-            android:name=".Log_Medicine_ChooseDosageAndDuration"
-            android:exported="false" />
-        <activity
-            android:name=".ViewMedicines"
-            android:exported="false" />
-        <activity
-            android:name=".ViewAMedicine"
-            android:exported="false" />
-        <activity
-            android:name=".Log_DoctorVisit_ChooseVisitType"
-            android:exported="false" />
-        <activity
-            android:name=".Log_DoctorVisit_ChooseDoctorType"
-            android:exported="false" />
-        <activity
-            android:name=".Log_DoctorVisit_ChooseDateAndDescription"
-            android:exported="false" />
-        <activity
-            android:name=".ViewDoctorVisits"
-            android:exported="false" />
-        <activity
-            android:name=".ViewADoctorVisit"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name="edu.gwu.coviddashboard.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.LogTrips"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.ViewTrips"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.LogInteraction"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.ViewInteraction"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.LogTakeoutOrders"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name="edu.gwu.coviddashboard.ViewTakeoutOrders"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:name=".Log_Symptom_ChooseSymptom"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_Symptom_SymptomSeverity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_Symptom_SymptomDate"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewSymptoms"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewASymptom"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_Medicine_ChooseMedicine"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_Medicine_ChooseDosageAndDuration"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewMedicines"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_DoctorVisit_ChooseVisitType"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_DoctorVisit_ChooseDoctorType"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Log_DoctorVisit_ChooseDateAndDescription"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewDoctorVisits"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewADoctorVisit"
+            android:exported="false" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewFitnessActivities"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewAFitnessActivity"
+            android:exported="false" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
