@@ -1,15 +1,13 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,9 +22,9 @@ public class ChooseSymptomRecyclerViewAdapter extends RecyclerView.Adapter<Choos
     }
 
     //WHEN VIEWHOLDER IS BEING CREATED
-    @NonNull
+
     @Override
-    public ChooseSymptomRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ChooseSymptomRecyclerViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         //INFLATE XML AND HOLD IN VIEW
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list, null);
 
@@ -36,7 +34,7 @@ public class ChooseSymptomRecyclerViewAdapter extends RecyclerView.Adapter<Choos
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChooseSymptomRecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(final ChooseSymptomRecyclerViewHolder holder, final int position) {
         holder.tvSymptomList.setText(data.get(position));
 
         //SET THE ITEM CLICK LISTENER
@@ -44,6 +42,8 @@ public class ChooseSymptomRecyclerViewAdapter extends RecyclerView.Adapter<Choos
             @Override
             public void onItemClick(View v, int pos) {
                 Snackbar.make(v, data.get(holder.getAdapterPosition()),Snackbar.LENGTH_SHORT).show();
+
+
                 Log_Symptom_ChooseSymptom.setSymptomChosen(data.get(holder.getAdapterPosition()));
 
                 // Send user to Symptom Severity

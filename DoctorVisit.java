@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 public class DoctorVisit extends LogEvent{
     private String VisitType; //type of visit (check-up, consultation, surgery, emergency visit, other)

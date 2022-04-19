@@ -1,10 +1,9 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.support.v7.widget.RecyclerView;
 public class ChooseMedicineRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView tvMedicineList;

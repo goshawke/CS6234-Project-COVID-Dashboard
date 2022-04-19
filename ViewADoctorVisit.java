@@ -1,27 +1,24 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 
 public class ViewADoctorVisit extends AppCompatActivity {
 
-    TextView tvVisitTypeHeader, tvDoctorTypeHeader, tvDate, tvDescription;
-    Button btnBack;
+    TextView tvVisitTypeHeader, tvDoctorTypeHeader, tvDate, tvDateHeader;
+    Button btnDelete;
 
     private static DoctorVisit myDoctorVisit;
+    DBHandler_MyDoctorVisits db;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -33,22 +30,27 @@ public class ViewADoctorVisit extends AppCompatActivity {
         tvVisitTypeHeader = findViewById(R.id.tvVisitTypeHeader_ViewADoctorVisit);
         tvDoctorTypeHeader = findViewById(R.id.tvDoctorTypeHeaderViewADoctorVisit);
         tvDate = findViewById(R.id.tvDate);
-        tvDescription = findViewById(R.id.tvDescription__ViewADoctorVisit);
+        tvDateHeader = findViewById(R.id.tvDateHeader);
 
 
-        btnBack = findViewById(R.id.btnBack_ViewADoctorVisit);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+
+        btnDelete = findViewById(R.id.btnDelete_ViewADoctorVisit);
+
+        db = new DBHandler_MyDoctorVisits(ViewADoctorVisit.this);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendUserToViewDoctorVisits();
+                tvDate.setText("");
+                tvDoctorTypeHeader.setText("");
+                tvVisitTypeHeader.setText("");
+                tvDateHeader.setText("");
+                db.deleteDoctorVisit(myDoctorVisit.getDoctorType());
+                SendUserToViewDashboard();
             }
         });
 
-
-        /*
-        TODO - get a doctorVisit and populate text boxes
-         */
 
         tvVisitTypeHeader.setText(getMyDoctorVisit().getVisitType());
         tvDoctorTypeHeader.setText(getMyDoctorVisit().getDoctorType());
@@ -56,7 +58,6 @@ public class ViewADoctorVisit extends AppCompatActivity {
 
         tvDate.setText(getMyDoctorVisit().getDateOfVisit());
 
-        tvDescription.setText(getMyDoctorVisit().getDescription());
 
 
     }
@@ -76,7 +77,21 @@ public class ViewADoctorVisit extends AppCompatActivity {
         finish();
     }//SendUserToDashboard
 
+    public void SendUserToViewDashboard()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }//SendUserToDashboard
 
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 
 

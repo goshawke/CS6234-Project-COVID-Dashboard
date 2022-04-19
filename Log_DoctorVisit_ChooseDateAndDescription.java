@@ -1,21 +1,25 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Log_DoctorVisit_ChooseDateAndDescription extends AppCompatActivity {
 
     Button btnBack, btnSave;
     TextView tvChosenVisitType, tvChosenDoctorType;
-    EditText etDateOfVisit, etDescription;
+    EditText etDescription;
+    DatePicker etDateOfVisit;
 
     private static DoctorVisit newDoctorVisit;
 
@@ -29,26 +33,20 @@ public class Log_DoctorVisit_ChooseDateAndDescription extends AppCompatActivity 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_doctor_visit_choose_date_and_description);
+        changeStatusBar(getWindow());
 
-        btnBack = findViewById(R.id.btnBack_date_and_description);
         btnSave = findViewById(R.id.btnSave_date_and_description);
 
         tvChosenVisitType = findViewById(R.id.tvChosenVisitType);
         tvChosenDoctorType = findViewById(R.id.tvChosenDoctorType);
 
         etDateOfVisit = findViewById(R.id.etDateOfVisit);
-        etDescription = findViewById(R.id.etDescription);
+        //etDescription = findViewById(R.id.etDescription);
 
         tvChosenVisitType.setText(Log_DoctorVisit_ChooseVisitType.getVisitTypeChosen());
         tvChosenDoctorType.setText(Log_DoctorVisit_ChooseDoctorType.getDoctorTypeChosen());
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                SendUserToChooseDoctorType();
-            }
-        });
+
 
         // creating a new dbhandler class
         // and passing our context to it.
@@ -59,53 +57,71 @@ public class Log_DoctorVisit_ChooseDateAndDescription extends AppCompatActivity 
             @Override
             public void onClick(View v)
             {
-                if(etDateOfVisit.getText().toString().matches(datePattern))
+
+                String Month = String.valueOf(etDateOfVisit.getMonth() + 1);
+                String Day = String.valueOf(etDateOfVisit.getDayOfMonth() + 1);
+                if(true)
                 {
-                    if(Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) <= 2022 && Integer.parseInt(etDateOfVisit.getText().toString().substring(6, 10)) >= 2000){
-                        if(Integer.parseInt(etDateOfVisit.getText().toString().substring(0, 2)) >= 0 && Integer.parseInt(etDateOfVisit.getText().toString().substring(0, 2)) <= 12){
-                            if(Integer.parseInt(etDateOfVisit.getText().toString().substring(3, 5)) >= 0 && Integer.parseInt(etDateOfVisit.getText().toString().substring(3, 5)) <= 31){
-                                setDate_of_visit(etDateOfVisit.getText().toString());
-                                setDescriptionHelper(etDescription.getText().toString());
+                    if(Integer.parseInt(Month) < 10){
+                        Month = "0" + (etDateOfVisit.getMonth() + 1);}
+                    else{
+                        Month = String.valueOf(etDateOfVisit.getMonth() + 1);
+                    }
+
+                    if(Integer.parseInt(Day) < 10){
+                        Day = "0" + (etDateOfVisit.getDayOfMonth());
+                    }
+                    else{
+                        Day = String.valueOf(etDateOfVisit.getDayOfMonth());
+                    }
+
+                    String Year = String.valueOf(etDateOfVisit.getYear());
+                    String Date = Month + "/" + Day + "/" + Year;
+                    if(Integer.parseInt(Year) <= 2022 && Integer.parseInt(Year) >= 2020){
+                        if(Integer.parseInt(Month) >= 0 && Integer.parseInt(Month) <= 12){
+                            if(Integer.parseInt(Day) >= 0 && Integer.parseInt(Day) <= 31){
+                                setDate_of_visit(Date);
+                                setDescriptionHelper("");
+                                //setDescriptionHelper(etDescription.getText().toString());
                                 newDoctorVisit = new DoctorVisit(Log_DoctorVisit_ChooseVisitType.getVisitTypeChosen(),
-                                        Log_DoctorVisit_ChooseDoctorType.getDoctorTypeChosen(), getDate_of_visit(), getDescriptionHelper(), 1);
+                                        Log_DoctorVisit_ChooseDoctorType.getDoctorTypeChosen(), getDate_of_visit(), getDescriptionHelper(), -1);
 
 
                                 dbHandlerMyDoctorVisits.addNewDoctorVisit(newDoctorVisit.getVisitType(), newDoctorVisit.getDoctorType(), newDoctorVisit.getDate(),newDoctorVisit.getDescription(),  String.valueOf(newDoctorVisit.getRisk_factor()));
 
 
                                 SendUserToDashboard();
+
                             }
                             else
                             {
 
-
                                 Toast.makeText(getApplicationContext(), "Please Enter Valid Date", Toast.LENGTH_LONG).show();
-                                etDateOfVisit.setText(null);
+                                //etStartMedicine.setText(null);
                             }
                         }
                         else
                         {
 
-
                             Toast.makeText(getApplicationContext(), "Please Enter Valid Date", Toast.LENGTH_LONG).show();
-                            etDateOfVisit.setText(null);
+                            //etStartMedicine.setText(null);
                         }
                     }
                     else
                     {
 
-
                         Toast.makeText(getApplicationContext(), "Please Enter Valid Date", Toast.LENGTH_LONG).show();
-                        etDateOfVisit.setText(null);
+                        //etStartMedicine.setText(null);
                     }
+
                 }
                 else
                 {
 
-
                     Toast.makeText(getApplicationContext(), "Please Enter Valid Date", Toast.LENGTH_LONG).show();
-                    etDateOfVisit.setText(null);
+                    //etStartMedicine.setText(null);
                 }
+
             }
         });
     }
@@ -160,5 +176,22 @@ public class Log_DoctorVisit_ChooseDateAndDescription extends AppCompatActivity 
         startActivity(intent);
         finish();
     }//SendUserToDashboard
+
+    public void changeStatusBar(Window window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.contentStatusBar));
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        Intent intent = new Intent(this, Log_DoctorVisit_ChooseDoctorType.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

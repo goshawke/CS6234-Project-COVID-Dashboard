@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 public class Symptom extends LogEvent{
     private String name; //name of symptom

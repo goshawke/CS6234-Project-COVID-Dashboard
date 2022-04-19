@@ -1,48 +1,38 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 public class ViewASymptom extends AppCompatActivity {
 
-    TextView tvViewASymptomHeader, tvFirstExperiencedDateHeader, tvFirstExperiencedDate, tvSeverityHeader;
+    TextView tvViewASymptomHeader, tvFirstExperiencedDateHeader, tvFirstExperiencedDate, tvSeverityHeader, textView4;
     ImageView ivSeverity;
 
     private static Symptom mySymptom;
-    Button btnBack;
+    Button btnDelete;
+    DBHandler_MySymptoms db;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_a_symptom);
-
+        changeStatusBar(getWindow());
         tvViewASymptomHeader = findViewById(R.id.tvViewASymptomHeader);
         tvFirstExperiencedDateHeader = findViewById(R.id.tvFirstExperiencedDateHeader);
         tvFirstExperiencedDate = findViewById(R.id.tvDuration);
         tvSeverityHeader = findViewById(R.id.tvSeverityHeader);
+        textView4 = findViewById(R.id.textView4);
 
         ivSeverity = findViewById((R.id.ivSeverity));
 
-        btnBack = findViewById(R.id.btnBack_view_symptoms_list);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SendUserToViewSymptoms();
-            }
-        });
-
-
-        /*
-        TODO - get a symptom and populate text boxes
-         */
 
         tvViewASymptomHeader.setText(getMySymptom().getName());
         tvFirstExperiencedDate.setText(getMySymptom().getDate());
@@ -64,6 +54,26 @@ public class ViewASymptom extends AppCompatActivity {
             ivSeverity.setImageResource(R.drawable.symptom);
         }
 
+
+        btnDelete = findViewById(R.id.btnDelete_ViewASymptom);
+
+        db = new DBHandler_MySymptoms(ViewASymptom.this);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvViewASymptomHeader.setText("");
+                tvFirstExperiencedDate.setText("");
+                tvSeverityHeader.setText("");
+                textView4.setText("");
+                tvFirstExperiencedDateHeader.setText("");
+                tvSeverityHeader.setText("");
+                ivSeverity.setVisibility(View.INVISIBLE);
+
+                db.delete(mySymptom.getName());
+                SendUserToViewDashboard();
+            }
+        });
     }
 
     public static Symptom getMySymptom() {
@@ -77,6 +87,30 @@ public class ViewASymptom extends AppCompatActivity {
     public void SendUserToViewSymptoms()
     {
         Intent intent = new Intent(this, ViewSymptoms.class);
+        startActivity(intent);
+        finish();
+    }//SendUserToDashboard
+
+    public void changeStatusBar(Window window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.contentStatusBar));
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        Intent intent = new Intent(this, ViewSymptoms.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void SendUserToViewDashboard()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }//SendUserToDashboard

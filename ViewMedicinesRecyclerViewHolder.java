@@ -1,18 +1,18 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView;
 
 public class ViewMedicinesRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView tvMedicineList;
+    TextView tvMedicineList, tvMedicineDosage;
     ViewMedicinesRecyclerViewAdapter.ItemClickListener itemClickListener;
     public ViewMedicinesRecyclerViewHolder(View itemView) {
         super(itemView);
         //ASSIGNING VIEWS
-        tvMedicineList = (TextView) itemView.findViewById(R.id.tvList);
+        tvMedicineList = (TextView) itemView.findViewById(R.id.tvCard_FitnessActivity);
+        tvMedicineDosage = (TextView) itemView.findViewById(R.id.tvCard_Date);
         itemView.setOnClickListener(this);
     }
     //WHEN CLICKED

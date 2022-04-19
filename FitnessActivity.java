@@ -1,16 +1,21 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 public class FitnessActivity extends LogEvent {
 
     private String name;
     private String duration;
-    private int caloriesBurned;
+    private String caloriesBurned;
 
-    public FitnessActivity(String name, String duration, int caloriesBurned, String date, String description, Double rf) {
+
+
+    private Double rf;
+
+    public FitnessActivity(String name, String duration, String caloriesBurned, String date, String description, Double rf) {
         super(date, rf, description);
         this.name = name;
         this.duration = duration;
         this.caloriesBurned = caloriesBurned;
+        this.rf = rf;
     }
 
     public String getName() {
@@ -29,13 +34,19 @@ public class FitnessActivity extends LogEvent {
         this.duration = duration;
     }
 
-    public int getCaloriesBurned() {
+    public String getCaloriesBurned() {
         return caloriesBurned;
     }
 
-    public void setCaloriesBurned(int caloriesBurned) {
+    public void setCaloriesBurned(String caloriesBurned) {
         this.caloriesBurned = caloriesBurned;
     }
 
+    public Double getRf() {
+        return rf;
+    }
 
+    public void setRf(Double rf) {
+        this.rf = rf;
+    }
 }

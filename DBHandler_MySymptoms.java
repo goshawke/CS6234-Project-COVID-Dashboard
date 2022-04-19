@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -130,6 +130,48 @@ public class DBHandler_MySymptoms extends SQLiteOpenHelper {
         // and returning our array list.
         cursorSymptoms.close();
         return symptomArrayList;
+    }
+
+    public int rf () {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorSymptoms = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        int rf = 0;
+        // on below line we are creating a new array list.
+
+
+        // moving our cursor to first position.
+        if (cursorSymptoms.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                rf+=cursorSymptoms.getInt(5);
+                Log.d("cursorSymptoms", cursorSymptoms.getInt(5)+"");
+
+            } while (cursorSymptoms.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorSymptoms.close();
+        return rf;
+    }
+
+
+    // below is the method for deleting our course.
+    public void delete(String name) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_NAME, "Name=?", new String[]{name});
+        db.close();
     }
 }
 

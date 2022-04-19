@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -130,5 +130,47 @@ public class DBHandler_MyDoctorVisits extends SQLiteOpenHelper {
         // and returning our array list.
         cursorDoctorVisits.close();
         return doctorVisitArrayList;
+    }
+
+    public int rf () {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorDoctorVisits = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        int rf = 0;
+        // on below line we are creating a new array list.
+
+
+        // moving our cursor to first position.
+        if (cursorDoctorVisits.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                rf+=cursorDoctorVisits.getInt(5);
+                Log.d("cursorDoctorVisits", cursorDoctorVisits.getInt(5)+"");
+
+            } while (cursorDoctorVisits.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorDoctorVisits.close();
+        return rf;
+    }
+
+
+    // below is the method for deleting our course.
+    public void deleteDoctorVisit(String doctorType) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_NAME, "DoctorType=?", new String[]{doctorType});
+        db.close();
     }
 }

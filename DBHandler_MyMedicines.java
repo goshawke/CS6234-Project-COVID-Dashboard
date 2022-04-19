@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -130,6 +130,45 @@ public class DBHandler_MyMedicines extends SQLiteOpenHelper {
         // and returning our array list.
         cursorMedicines.close();
         return medicineArrayList;
+    }
+
+    public void delete(String name, String dosage){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + NAME_COL + " = '" + name + "' AND " + DOSAGE_COL + " = '" + dosage +"'";
+        db.execSQL(sql);
+
+        Log.d("remove", name.toString());
+        Log.d("remove", dosage.toString());
+
+        db.close();
+    }
+
+    public int rf () {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorMedicines = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        int rf = 0;
+        // on below line we are creating a new array list.
+
+
+        // moving our cursor to first position.
+        if (cursorMedicines.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                rf+=cursorMedicines.getInt(5);
+                Log.d("cursorMedicines", cursorMedicines.getInt(5)+"");
+
+            } while (cursorMedicines.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorMedicines.close();
+        return rf;
     }
 }
 

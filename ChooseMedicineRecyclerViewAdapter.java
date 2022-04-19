@@ -1,4 +1,4 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+//import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -24,9 +23,9 @@ public class ChooseMedicineRecyclerViewAdapter extends RecyclerView.Adapter<Choo
     }
 
     //WHEN VIEWHOLDER IS BEING CREATED
-    @NonNull
+
     @Override
-    public ChooseMedicineRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ChooseMedicineRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //INFLATE XML AND HOLD IN VIEW
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list, null);
 
@@ -36,14 +35,18 @@ public class ChooseMedicineRecyclerViewAdapter extends RecyclerView.Adapter<Choo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChooseMedicineRecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(final ChooseMedicineRecyclerViewHolder holder, final int position) {
         holder.tvMedicineList.setText(data.get(position));
 
         //SET THE ITEM CLICK LISTENER
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                Snackbar.make(v, data.get(holder.getAdapterPosition()),Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(v, data.get(holder.getAdapterPosition()),Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(c.getApplicationContext(),
+                        data.get(holder.getAdapterPosition()),
+                        Toast.LENGTH_LONG)
+                        .show();
                 Log_Medicine_ChooseMedicine.setMedicineChosen(data.get(holder.getAdapterPosition()));
 
                 // Send user to Medicine Dosage and Duration

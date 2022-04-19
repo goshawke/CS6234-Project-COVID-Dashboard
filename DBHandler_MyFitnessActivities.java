@@ -1,4 +1,5 @@
-package com.practice.coviddashboard;
+package edu.gwu.coviddashboard;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +15,7 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
 
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "Medicine Log Database";
+    private static final String DB_NAME = "FitnessActivity Log Database";
 
     // below int is our database version
     private static final int DB_VERSION = 2;
@@ -30,6 +31,9 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
 
     // below variable id for our duration column.
     private static final String DURATION_COL = "Duration";
+
+    // below variable id for our duration column.
+    private static final String CAL_BURNED_COL = "Calories";
 
     // below variable for our date column.
     private static final String DATE_COL = "startDate";
@@ -56,6 +60,7 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
                 + DURATION_COL + " TEXT,"
+                + CAL_BURNED_COL + " TEXT,"
                 + DATE_COL + " TEXT,"
                 + DESCRIPTION_COL + " TEXT,"
                 + RF_COL + " DOUBLE)";
@@ -66,7 +71,7 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewMedicine(String Name, String Duration, String dateFirstExperienced, String Description, String rf) {
+    public void addNewFitnessActivity(String Name, String Duration, String Calories, String Date, String Description, String rf) {
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
@@ -81,10 +86,11 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
         // along with its key and value pair.
         values.put(NAME_COL, Name);
         values.put(DURATION_COL, Duration);
-        values.put(DATE_COL, dateFirstExperienced);
+        values.put(CAL_BURNED_COL, Calories);
+        values.put(DATE_COL, Date);
         values.put(DESCRIPTION_COL, Description);
         values.put(RF_COL, rf);
-        Log.d("Value = ", values.toString());
+        Log.d("Values = ", values.toString());
 
         // after adding all values we are passing
         // content values to our table.
@@ -103,7 +109,7 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
     }
 
     // we have created a new method for reading all the courses.
-    public ArrayList<Medicine> readFitnessActivities() {
+    public ArrayList<FitnessActivity> readFitnessActivities() {
         // on below line we are creating a
         // database for reading our database.
         SQLiteDatabase db = this.getReadableDatabase();
@@ -112,24 +118,68 @@ public class DBHandler_MyFitnessActivities extends SQLiteOpenHelper {
         Cursor cursorFitnessActivities = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         // on below line we are creating a new array list.
-        ArrayList<Medicine> medicineArrayList = new ArrayList<>();
+        ArrayList<FitnessActivity> FitnessActivityArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
         if (cursorFitnessActivities.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
-                medicineArrayList.add(new Medicine(cursorFitnessActivities.getString(1),
+                FitnessActivityArrayList.add(new FitnessActivity(cursorFitnessActivities.getString(1),
                         cursorFitnessActivities.getString(2),
                         cursorFitnessActivities.getString(3),
                         cursorFitnessActivities.getString(4),
-                        cursorFitnessActivities.getInt(5)));
+                        cursorFitnessActivities.getString(5),
+                        (double) cursorFitnessActivities.getInt(6)));
             } while (cursorFitnessActivities.moveToNext());
             // moving our cursor to next.
         }
         // at last closing our cursor
         // and returning our array list.
         cursorFitnessActivities.close();
-        return medicineArrayList;
+        return FitnessActivityArrayList;
     }
+
+    public int rf () {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorFitnessActivities = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        int rf = 0;
+        // on below line we are creating a new array list.
+
+
+        // moving our cursor to first position.
+        if (cursorFitnessActivities.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                rf+=cursorFitnessActivities.getInt(6);
+                Log.d("cursoFitnessActivities", cursorFitnessActivities.getInt(6)+"");
+
+            } while (cursorFitnessActivities.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorFitnessActivities.close();
+        return rf;
+    }
+
+
+    // below is the method for deleting our course.
+    public void delete(String name) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_NAME, "Name=?", new String[]{name});
+        db.close();
+    }
+
 }
 
